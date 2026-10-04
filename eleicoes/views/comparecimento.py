@@ -15,6 +15,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from . import brand
 from .. import config, geo, store
 from . import maps
 from .common import ViewContext, fmt_int, fmt_pct, no_data, uf_name
@@ -34,11 +35,11 @@ METRICS: dict[str, tuple[str, str]] = {
 METRIC_KEY = "comp_metric"
 CARGOS_COMPARE = (1, 3, 5, 6, 7)
 
-# Paleta (skill dataviz): rampa sequencial azul (claro -> escuro) e slots categóricos 1 e 2.
-_BLUE_RAMP = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
+# Paleta: slots categóricos 1 e 2 e "sem dados"; a rampa sequencial vem de brand.sequential().
 _THEME = {
-    "light": {"series1": "#2a78d6", "series2": "#eb6834", "nodata": "#d9d8d4", "line": "#ffffff"},
-    "dark": {"series1": "#3987e5", "series2": "#d95926", "nodata": "#4a4a46", "line": "#1a1a19"},
+    # cores da marca (brand.py): categóricas 1 e 2 do tema, "sem dados" e divisas na cor da tela
+    "light": {"series1": "#2E5E8C", "series2": "#CB6418", "nodata": "#C9CED6", "line": "#EEF1EC"},
+    "dark": {"series1": "#7FA8D6", "series2": "#E8873F", "nodata": "#2E3631", "line": "#0F1411"},
 }
 
 
@@ -167,7 +168,7 @@ def _map(df: pd.DataFrame, geojson: dict, loc: str, col: str, label: str, height
     gj_val = {"type": "FeatureCollection", "features": [f for f in feats if str(f.get("id")) in have]}
     gj_nod = {"type": "FeatureCollection", "features": [f for f in feats if str(f.get("id")) not in have]}
     lo, hi = color_range(valid[col])
-    scale = [[i / (len(_BLUE_RAMP) - 1), c] for i, c in enumerate(_BLUE_RAMP)]
+    scale = brand.sequential()
     fig = maps.value_map(valid, gj_val, col, loc=loc, hover_col="hover", colorscale=scale, zmin=lo, zmax=hi,
                          colorbar_title="", height=height)
     fig.update_traces(marker_line_color=th["line"], colorbar=dict(ticksuffix="%"))

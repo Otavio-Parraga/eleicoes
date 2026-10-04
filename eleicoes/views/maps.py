@@ -11,10 +11,20 @@ import pandas as pd
 import plotly.graph_objects as go
 
 from .. import config
+from . import brand
 from .common import party_color
 
 
-NO_DATA_COLOR = "#C9CED6"  # sem votos apurados: visível sobre fundo branco
+NO_DATA_COLOR = "#C9CED6"  # sem votos apurados (tema claro); no escuro usa brand.tokens()["vazio"]
+
+
+def _no_data() -> str:
+    return brand.tokens()["vazio"]
+
+
+def _border() -> str:
+    """Divisas na cor da tela: as áreas parecem recortadas do fundo."""
+    return brand.tokens()["tela"]
 
 
 def _hex_to_rgb(h: str) -> tuple[int, int, int]:
@@ -49,7 +59,7 @@ def leader_map(df: pd.DataFrame, geojson: dict, *, loc: str = "uf", party_col: s
     margins = pd.to_numeric(df[margin_col], errors="coerce").fillna(0)
     for p, m in zip(df[party_col], margins):
         if p is None or (isinstance(p, float) and pd.isna(p)):
-            colors.append(NO_DATA_COLOR)
+            colors.append(_no_data())
         else:
             colors.append(blend(party_color(p), 0.35 + 0.65 * min(1.0, float(m) / full_margin_pp)))
     n = max(len(colors), 1)
@@ -59,8 +69,8 @@ def leader_map(df: pd.DataFrame, geojson: dict, *, loc: str = "uf", party_col: s
         scale += [[lo, c], [hi, c]]
     fig = go.Figure(go.Choropleth(
         geojson=geojson, locations=df[loc], z=[(i + 0.5) / n for i in range(len(df))], zmin=0, zmax=1,
-        colorscale=scale or [[0, NO_DATA_COLOR], [1, NO_DATA_COLOR]], showscale=False,
-        marker_line_color="#FFFFFF", marker_line_width=0.6,
+        colorscale=scale or [[0, _no_data()], [1, _no_data()]], showscale=False,
+        marker_line_color=_border(), marker_line_width=0.7,
         text=df[hover_col] if hover_col else None, hovertemplate="%{text}<extra></extra>" if hover_col else None,
     ))
     return _layout(fig, height)
@@ -69,11 +79,13 @@ def leader_map(df: pd.DataFrame, geojson: dict, *, loc: str = "uf", party_col: s
 def value_map(df: pd.DataFrame, geojson: dict, value_col: str, *, loc: str = "uf", hover_col: str | None = None,
               colorscale: str | list = "Blues", zmin: float | None = None, zmax: float | None = None,
               zmid: float | None = None, colorbar_title: str = "", height: int = 560,
-              nan_color: str | None = NO_DATA_COLOR, line_color: str = "#FFFFFF") -> go.Figure:
+              nan_color: str | None = "auto", line_color: str | None = None) -> go.Figure:
     """Mapa contínuo. Use zmid (ex. 0) com escala divergente ('RdBu') para swing.
 
     Áreas com valor NaN (ex. nada apurado) são desenhadas em `nan_color` (None = omitidas).
     """
+    nan_color = _no_data() if nan_color == "auto" else nan_color
+    line_color = line_color or _border()
     fig = go.Figure()
     isnan = df[value_col].isna()
     if nan_color and isnan.any():

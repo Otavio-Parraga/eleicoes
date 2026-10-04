@@ -13,6 +13,7 @@ import logging
 import pandas as pd
 import streamlit as st
 
+from . import brand
 from .. import config, geo, store
 from . import maps
 from .common import K_MUN, ViewContext, fmt_int, fmt_pct, no_data, party_color, select_uf, uf_name
@@ -22,7 +23,6 @@ log = logging.getLogger(__name__)
 
 MODES = ["Líder", "% apurado"]
 # Escala sequencial (um matiz, claro -> escuro) para % de seções apuradas
-SEQ_BLUE = [[0.0, "#cde2fb"], [0.25, "#86b6ef"], [0.5, "#3987e5"], [0.75, "#1c5cab"], [1.0, "#0d366b"]]
 K_NONCE = "_mapa_click_nonce"
 NO_BAR = {"displayModeBar": False, "scrollZoom": False}
 
@@ -120,7 +120,7 @@ def _legend(lead: pd.DataFrame, unidade: str) -> None:
 
 def _figure(df: pd.DataFrame, gj: dict, loc: str, mode: str, height: int):
     if mode == "% apurado":
-        return maps.value_map(df, gj, "pct_secoes", loc=loc, hover_col="hover", colorscale=SEQ_BLUE, zmin=0,
+        return maps.value_map(df, gj, "pct_secoes", loc=loc, hover_col="hover", colorscale=brand.sequential(), zmin=0,
                               zmax=100, colorbar_title="% seções", height=height)
     return maps.leader_map(df, gj, loc=loc, hover_col="hover", height=height)
 

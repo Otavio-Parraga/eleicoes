@@ -11,6 +11,127 @@ enableCORS = true
 enableXsrfProtection = true
 # O app não tem upload de arquivos.
 maxUploadSize = 1
+# Fontes da identidade visual servidas de ./static (sem depender do Google Fonts em produção).
+enableStaticServing = true
 
 [browser]
 gatherUsageStats = false
+
+# ---------------------------------------------------------------------------------------------------------------
+# Identidade visual: o app é a urna. A barra lateral é o teclado (grafite, sempre escuro); a área principal é a
+# tela de cristal líquido (cinza-esverdeado claro). Verde = tecla CONFIRMA (seleção/decidido), laranja = CORRIGE.
+# Tipos: Big Shoulders Display (títulos, sinalização), Public Sans (texto), Azeret Mono (números, como o boletim).
+# Os tokens de cor são os mesmos de eleicoes/views/brand.py.
+
+[theme]
+font = "Public Sans, sans-serif"
+headingFont = "Big Shoulders Display, Arial Narrow, sans-serif"
+codeFont = "Azeret Mono, monospace"
+headingFontWeights = [800, 800, 700, 700, 700, 600]
+headingFontSizes = ["3.25rem", "2.5rem", "1.9rem", "1.45rem", "1.15rem", "1rem"]
+baseFontSize = 15
+baseRadius = "10px"
+buttonRadius = "8px"
+showWidgetBorder = true
+showSidebarBorder = false
+chartCategoricalColors = ["#2E5E8C", "#CB6418", "#1D8A4C", "#7A4E92", "#B8322A", "#5B6660", "#B8901C", "#24807F"]
+chartSequentialColors = ["#E3E9E3", "#C9D3CA", "#AFBDB1", "#94A698", "#7A9080", "#617A69", "#4A6453", "#354E3F",
+                         "#22382C", "#16201B"]
+
+[[theme.fontFaces]]
+family = "Public Sans"
+url = "app/static/fonts/PublicSans-normal-latin.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "Public Sans"
+url = "app/static/fonts/PublicSans-normal-latin-ext.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+
+[[theme.fontFaces]]
+family = "Public Sans"
+url = "app/static/fonts/PublicSans-italic-latin.woff2"
+weight = "100 900"
+style = "italic"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "Big Shoulders Display"
+url = "app/static/fonts/BigShouldersDisplay-normal-latin.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "Big Shoulders Display"
+url = "app/static/fonts/BigShouldersDisplay-normal-latin-ext.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+
+[[theme.fontFaces]]
+family = "Azeret Mono"
+url = "app/static/fonts/AzeretMono-normal-latin.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "Azeret Mono"
+url = "app/static/fonts/AzeretMono-normal-latin-ext.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+
+# Tela da urna — claro
+[theme.light]
+backgroundColor = "#EEF1EC"
+secondaryBackgroundColor = "#E1E7E1"
+textColor = "#16201B"
+primaryColor = "#1D8A4C"
+borderColor = "#CDD5CD"
+linkColor = "#1D8A4C"
+codeBackgroundColor = "#E1E7E1"
+dataframeHeaderBackgroundColor = "#E1E7E1"
+dataframeBorderColor = "#D7DED7"
+greenColor = "#1D8A4C"
+orangeColor = "#CB6418"
+redColor = "#B8322A"
+blueColor = "#2E5E8C"
+grayColor = "#5B6660"
+
+# Tela da urna — escuro
+[theme.dark]
+backgroundColor = "#0F1411"
+secondaryBackgroundColor = "#1A211C"
+textColor = "#E4EAE5"
+primaryColor = "#3DAE6B"
+borderColor = "#2A332D"
+linkColor = "#3DAE6B"
+codeBackgroundColor = "#1A211C"
+dataframeHeaderBackgroundColor = "#1A211C"
+dataframeBorderColor = "#232B25"
+greenColor = "#3DAE6B"
+orangeColor = "#E8873F"
+redColor = "#E0645A"
+blueColor = "#7FA8D6"
+grayColor = "#97A39C"
+
+# Teclado da urna — sempre grafite, nos dois modos
+[theme.light.sidebar]
+backgroundColor = "#1B201D"
+secondaryBackgroundColor = "#2A312C"
+textColor = "#E6ECE7"
+primaryColor = "#3DAE6B"
+borderColor = "#3A433D"
+
+[theme.dark.sidebar]
+backgroundColor = "#161B18"
+secondaryBackgroundColor = "#252C27"
+textColor = "#E6ECE7"
+primaryColor = "#3DAE6B"
+borderColor = "#343D37"

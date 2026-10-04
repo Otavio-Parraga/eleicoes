@@ -162,8 +162,8 @@ class AppSmokeTests(_DBCase):
             with self.subTest(view=view, uf=uf, cargo=cargo):
                 at = run_app(self.db, view=view, uf=uf, cargo=cargo)
                 self.assertEqual(failures(at), [])
-                self.assertTrue(any("Atualizado pelo TSE" in str(m.value) for m in at.markdown),
-                                "cabeçalho sem horário do TSE")
+                headers = [h.proto.body for h in at.get("html") if 'class="cab"' in h.proto.body]
+                self.assertTrue(any("atualizado pelo TSE" in h for h in headers), "cabeçalho sem horário do TSE")
 
     def test_municipio_selected(self):
         mun = geo.municipios_uf("rs")["mun"].iloc[0]

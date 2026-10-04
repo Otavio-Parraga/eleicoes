@@ -15,6 +15,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from . import brand
 from .. import config, seats, store
 from .common import ViewContext, fmt_int, fmt_pct, no_data, party_color, uf_name
 
@@ -28,7 +29,6 @@ LABEL_PROJ = "Projeção (apuração em andamento)"
 LABEL_OFIC = "Resultado oficial"
 
 # Escala sequencial (uma matiz, claro -> escuro) da skill dataviz
-SEQ_SCALE = [[0.0, "#cde2fb"], [0.35, "#86b6ef"], [0.7, "#2a78d6"], [1.0, "#0d366b"]]
 
 # Ordem ideológica aproximada (esquerda -> direita) para dispor os assentos no hemiciclo.
 IDEOLOGIA = [
@@ -259,7 +259,7 @@ def seats_heatmap(elected: pd.DataFrame) -> go.Figure:
     text = np.where(z > 0, z.astype(int).astype(str), "")
     z[z == 0] = np.nan
     fig = go.Figure(go.Heatmap(
-        z=z, x=[u.upper() for u in pv.columns], y=list(pv.index), colorscale=SEQ_SCALE, zmin=0.5,
+        z=z, x=[u.upper() for u in pv.columns], y=list(pv.index), colorscale=brand.sequential(), zmin=0.5,
         text=text, texttemplate="%{text}", textfont=dict(size=11), xgap=2, ygap=2, hoverongaps=False,
         colorbar=dict(title="Cadeiras", thickness=12),
         hovertemplate="%{y} · %{x}: %{z} cadeiras<extra></extra>"))

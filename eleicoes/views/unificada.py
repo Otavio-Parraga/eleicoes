@@ -23,8 +23,6 @@ log = logging.getLogger(__name__)
 
 OWN_HEADER = True  # app.py não desenha o cabeçalho padrão sobre esta tela
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500;600"
-         "&family=Big+Shoulders+Display:wght@700;800&family=Public+Sans:wght@400;600;700&display=swap")
 VICE = {1: "Vice-Presidente", 3: "Vice-Governador", 5: "1º Suplente"}
 TITULO = {1: "Presidente", 3: "Governador", 5: "Senador", 6: "Deputado Federal", 7: "Deputado Estadual"}
 DECIDIDO = (analysis.ST_DECIDIDO, analysis.ST_PRATICA)
@@ -208,13 +206,12 @@ def e(x) -> str:
 
 
 CSS = """
-@import url('%(fonts)s');
-.uni{--sheet:#ECEFEA;--card:#FBFCFA;--screen:#E2E9E3;--screen-edge:#C9D3CB;--ink:#16201B;--muted:#5B6660;
- --rule:#D3D9D2;--track:#DCE2DC;--confirma:#1D8A4C;--corrige:#CB6418;--neutro:#5B6660;
+.uni{--sheet:#EEF1EC;--card:#FAFBF9;--screen:#E1E7E1;--screen-edge:#C9D3CB;--ink:#16201B;--muted:#5B6660;
+ --rule:#CDD5CD;--track:#DCE2DC;--confirma:#1D8A4C;--corrige:#CB6418;--neutro:#5B6660;
  font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--sheet);
- border-radius:22px;padding:30px 30px 34px;line-height:1.35}
-.uni.dark{--sheet:#101512;--card:#171D19;--screen:#1F2822;--screen-edge:#2F3B33;--ink:#E6ECE7;--muted:#97A39C;
- --rule:#29322C;--track:#2A332D;--confirma:#45C27C;--corrige:#F0883E;--neutro:#97A39C}
+ padding:4px 0 24px;line-height:1.35}
+.uni.dark{--sheet:#0F1411;--card:#161C18;--screen:#1F2822;--screen-edge:#2F3B33;--ink:#E4EAE5;--muted:#97A39C;
+ --rule:#2A332D;--track:#29322C;--confirma:#3DAE6B;--corrige:#E8873F;--neutro:#97A39C}
 .uni *{box-sizing:border-box}
 .uni .mono{font-family:'Azeret Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
 .uni .eyebrow{font:600 11px/1.4 'Azeret Mono',ui-monospace,Menlo,monospace;letter-spacing:.16em;
@@ -322,12 +319,12 @@ CSS = """
 .uni .pilha{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--track)}
 .uni .vazio{color:var(--muted);font-size:13.5px;padding:18px 0;text-align:center;border:1.5px dashed var(--rule);
  border-radius:12px}
-@media (max-width:640px){.uni{padding:20px 16px 24px;border-radius:16px}.uni .grade.dois{grid-template-columns:1fr}}
+@media (max-width:640px){.uni .grade.dois{grid-template-columns:1fr}}
 """
 
 
 def css() -> str:
-    return "<style>" + CSS.replace("%(fonts)s", FONTS) + "</style>"
+    return "<style>" + CSS + "</style>"
 
 
 def _foto(cargo: int, uf: str, r) -> str:

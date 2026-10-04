@@ -12,6 +12,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from . import brand
 from .. import config, geo, store
 from . import maps
 from .common import K_CAND, ViewContext, fmt_int, fmt_pct, no_data, party_color, uf_name
@@ -24,11 +25,7 @@ DEFAULT_UF = "rs"
 MIN_VALIDOS_RANK_PCT = 500   # ranking por % só considera áreas com pelo menos isso de votos válidos apurados
 TOP_N = 10
 
-# Rampa sequencial (azul, claro -> escuro) da skill dataviz; cinza para "ainda sem dados".
-SEQ_BLUE = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
-SEQ_SCALE = [[i / (len(SEQ_BLUE) - 1), c] for i, c in enumerate(SEQ_BLUE)]
-BAR_COLOR = "#2a78d6"
-NO_DATA_FILL = "#C9CED6"
+# Cores: rampa sequencial e "sem dados" vêm de brand.py (identidade do app).
 
 STRENGTH_COLS = ["loc", "nome", "capital", "votos", "pct_validos", "rank", "n_cands", "validos", "pct_secoes"]
 
@@ -213,13 +210,13 @@ def strength_map(tab: pd.DataFrame, geojson: dict, all_locs: list[str], height: 
     d = tab[tab["pct_secoes"] > 0].copy()
     d["hover"] = hover_text(d)
     zmax = max(1.0, float(d["pct_validos"].max())) if not d.empty else 1.0
-    fig = maps.value_map(d, geojson, "pct_validos", loc="loc", hover_col="hover", colorscale=SEQ_SCALE, zmin=0,
+    fig = maps.value_map(d, geojson, "pct_validos", loc="loc", hover_col="hover", colorscale=brand.sequential(), zmin=0,
                          zmax=zmax, colorbar_title="% válidos", height=height)
     missing = [x for x in all_locs if x not in set(d["loc"])]
     if missing:
         fig.add_trace(go.Choropleth(
-            geojson=geojson, locations=missing, z=[0] * len(missing), colorscale=[[0, NO_DATA_FILL], [1, NO_DATA_FILL]],
-            showscale=False, marker_line_color="#FFFFFF", marker_line_width=0.6, hoverinfo="skip"))
+            geojson=geojson, locations=missing, z=[0] * len(missing), colorscale=[[0, brand.tokens()["vazio"]], [1, brand.tokens()["vazio"]]],
+            showscale=False, marker_line_color=brand.tokens()["tela"], marker_line_width=0.6, hoverinfo="skip"))
         fig.data = (fig.data[1], fig.data[0])
     fig.update_traces(colorbar_ticksuffix="%")
     return fig
@@ -227,7 +224,7 @@ def strength_map(tab: pd.DataFrame, geojson: dict, all_locs: list[str], height: 
 
 def compare_bar(rows: pd.DataFrame) -> go.Figure:
     fig = go.Figure(go.Bar(
-        x=rows["pct"], y=rows["rotulo"], orientation="h", marker_color=BAR_COLOR, width=0.55,
+        x=rows["pct"], y=rows["rotulo"], orientation="h", marker_color=brand.tokens()["tinta"], width=0.55,
         text=[fmt_pct(p, 1) for p in rows["pct"]], textposition="outside", cliponaxis=False,
         hovertemplate="%{y}: %{text} dos válidos<extra></extra>"))
     fig.update_layout(height=60 + 38 * len(rows), margin=dict(l=0, r=40, t=8, b=8), barcornerradius=4,

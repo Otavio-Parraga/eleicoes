@@ -3,15 +3,13 @@ from __future__ import annotations
 
 import importlib
 import logging
-from datetime import datetime
 
 import pandas as pd
 import streamlit as st
 
 from eleicoes import config, geo, store
-from eleicoes.views import VIEWS
-from eleicoes.views.common import (K_CARGO, K_MUN, K_SOURCE, K_TURNO, K_UF, ViewContext, available, fmt_pct,
-                                   uf_name)
+from eleicoes.views import VIEWS, brand
+from eleicoes.views.common import K_CARGO, K_MUN, K_SOURCE, K_TURNO, K_UF, ViewContext, available, uf_name
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +30,7 @@ def _reset_event_cursor() -> None:
 
 def sidebar() -> tuple[int, int, str, int]:
     sb = st.sidebar
-    sb.title("Eleições 2026")
+    brand.sidebar_mark()
     sb.radio("Fonte de dados", SOURCES, key=K_SOURCE, horizontal=True, on_change=_reset_event_cursor)
     turno = sb.radio("Turno", [1, 2], format_func=lambda t: f"{t}º turno", key=K_TURNO, horizontal=True)
     cargos = [c for c in config.UI_CARGOS if available(turno, c)]
@@ -61,17 +59,18 @@ def _valid_mun(uf: str) -> str | None:
     return None
 
 
-def collector_status(conn) -> None:
-    hb = store.get_meta(conn, "collector_heartbeat")
-    if not hb:
-        st.caption(":orange[Coletor ainda não rodou neste banco.]")
-        return
+@st.fragment(run_every=15)
+def collector_led() -> None:
+    """Luz de status do coletor no teclado (barra lateral); se atualiza sozinha."""
     try:
-        age = (datetime.now() - datetime.fromisoformat(hb)).total_seconds()
-    except ValueError:
-        return
-    msg = f"Coletor: último ciclo há {int(age)} s"
-    (st.caption if age < 180 else st.error)(msg)
+        conn = store.connect(_db_path())
+        try:
+            st.html(brand.led_html(store.get_meta(conn, "collector_heartbeat"),
+                                   store.get_meta(conn, "collector_last_tse_ts")))
+        finally:
+            conn.close()
+    except Exception:  # noqa: BLE001
+        log.warning("status do coletor", exc_info=True)
 
 
 def event_toasts(conn) -> None:
@@ -98,25 +97,25 @@ def header(ctx: ViewContext) -> None:
     from eleicoes.views.ranking import area_totals, mun_name  # import tardio: telas são recarregáveis
 
     area = ctx.area_nome if ctx.uf != config.BRASIL else "Brasil"
-    if ctx.mun:
-        area += f" — {mun_name(ctx.uf, ctx.mun)}"
+    titulo, sub = (mun_name(ctx.uf, ctx.mun), area) if ctx.mun else (area, "")
     t = area_totals(ctx.conn, ctx.eleicao, ctx.cargo, ctx.uf, ctx.mun)
-    extra = ""
-    if t is not None:
-        ts = t.get("tse_ts")
-        hora = f"Atualizado pelo TSE às {ts.strftime('%H:%M:%S')}" if pd.notna(ts) else "Sem horário do TSE"
-        fim = " · **apuração encerrada**" if int(t.get("finalizada", 0) or 0) else ""
-        extra = f" · **{fmt_pct(t['pct_secoes'])}** das seções apuradas · {hora}{fim}"
-        if ctx.uf == config.BRASIL and ctx.cargo != 1:
-            extra += " (soma das 27 UFs)"
+    olho = [ctx.cargo_nome, f"{ctx.turno}º turno"]
+    if t is None:
+        olho.append("aguardando dados do TSE")
     else:
-        extra = " · aguardando dados"
-    st.markdown(f"### {area} · {ctx.cargo_nome}  \n<span style='opacity:.75'>{extra.lstrip(' ·')}</span>",
-                unsafe_allow_html=True)
+        ts = t.get("tse_ts")
+        olho.append(f"atualizado pelo TSE às {ts.strftime('%H:%M:%S')}" if pd.notna(ts) else "sem horário do TSE")
+        if ctx.uf == config.BRASIL and ctx.cargo != 1:
+            olho.append("soma das 27 UFs")
+    st.html(brand.header_html(" · ".join(olho), titulo, sub, None if t is None else t["pct_secoes"],
+                              encerrada=t is not None and bool(int(t.get("finalizada", 0) or 0))))
 
 
 def main() -> None:
+    brand.inject()
     turno, cargo, uf, refresh = sidebar()
+    with st.sidebar:
+        collector_led()
     view_label = st.segmented_control("Visão", [v[0] for v in VIEWS], default=VIEWS[0][0], key="view",
                                       label_visibility="collapsed") or VIEWS[0][0]
     module = importlib.import_module(f"eleicoes.views.{dict(VIEWS)[view_label]}")
@@ -137,7 +136,6 @@ def main() -> None:
             try:
                 if not getattr(module, "OWN_HEADER", False):  # telas com cabeçalho próprio (ex.: Visão unificada)
                     header(ctx)
-                collector_status(conn)
             except Exception:  # noqa: BLE001
                 log.warning("cabeçalho", exc_info=True)
             try:

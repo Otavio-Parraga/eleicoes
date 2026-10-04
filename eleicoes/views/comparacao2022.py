@@ -16,7 +16,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from .. import config, geo, hist2022, store
-from . import maps
+from . import brand, maps
 from .common import ViewContext, fmt_int, fmt_pct, no_data, party_color, uf_name
 
 log = logging.getLogger(__name__)
@@ -32,8 +32,9 @@ _DIV = {
     "dark": ["#e3a04f", "#a87132", "#6b4e2a", "#383835", "#2a5f59", "#3a9a8f", "#6fd3c4"],
 }
 _THEME = {
-    "light": {"line": "#ffffff", "nodata_line": "#b5b4ae", "muted": "#52514e", "ring": "#fcfcfb"},
-    "dark": {"line": "#1a1a19", "nodata_line": "#5a5a55", "muted": "#c3c2b7", "ring": "#1a1a19"},
+    # divisas e anéis na cor da tela (brand.py); texto apagado da marca
+    "light": {"line": "#EEF1EC", "nodata_line": "#B3BCB4", "muted": "#5B6660", "ring": "#EEF1EC"},
+    "dark": {"line": "#0F1411", "nodata_line": "#3A453D", "muted": "#97A39C", "ring": "#0F1411"},
 }
 HELP_CMD = ("conda run -n python3 python -m eleicoes.hist2022 download && "
             "conda run -n python3 python -m eleicoes.hist2022 build")
@@ -405,10 +406,9 @@ def _reference_2022(s22: pd.DataFrame, partido: str, loc: str, gj: dict | None, 
     d["nome"] = d[loc].map(names).fillna(d[loc])
     d["hover"] = [f"<b>{n}</b><br>{partido} 2022 ({c}): {fmt_pct(p)}"
                   for n, c, p in zip(d["nome"], d["nm_urna"], d["pct_validos"])]
-    ramp = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
     st.markdown(f"**Referência: {partido} em 2022** (% dos válidos)")
     fig = maps.value_map(d, gj, "pct_validos", loc=loc, hover_col="hover", zmin=0,
-                         colorscale=[[i / 6, c] for i, c in enumerate(ramp)], colorbar_title="%", height=520)
+                         colorscale=brand.sequential(), colorbar_title="%", height=520)
     fig.update_traces(marker_line_color=_THEME[_mode()]["line"], colorbar=dict(ticksuffix="%"))
     st.plotly_chart(fig, width="stretch", key="cmp22_map_ref", config={"displayModeBar": False})
 
