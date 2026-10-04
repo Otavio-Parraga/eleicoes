@@ -57,7 +57,9 @@ def _css() -> str:
 :root{{--tela:{t['tela']};--tinta:{t['tinta']};--apagado:{t['apagado']};--linha:{t['linha']};
  --trilho:{t['trilho']};--confirma:{t['confirma']};--corrige:{t['corrige']}}}
 [data-testid="stHeader"]{{background:transparent}}
-[data-testid="stMainBlockContainer"]{{padding-top:2.2rem;padding-bottom:4rem;max-width:1560px}}
+/* o cabeçalho fixo do Streamlit (3.75rem) fica por cima do conteúdo: o topo precisa passar dele, senão ele
+   "come" a parte de cima das teclas e o clique só funciona embaixo delas */
+[data-testid="stMainBlockContainer"]{{padding-top:4.5rem;padding-bottom:4rem;max-width:1560px}}
 
 /* números com cara de boletim */
 [data-testid="stMetricValue"]{{font-family:'Azeret Mono',ui-monospace,monospace;font-weight:600;

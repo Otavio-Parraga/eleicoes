@@ -1,3 +1,4 @@
+import re
 import tomllib
 import unittest
 from datetime import datetime
@@ -6,6 +7,7 @@ from pathlib import Path
 from eleicoes.views import brand
 
 ROOT = Path(__file__).resolve().parents[1]
+STREAMLIT_HEADER_REM = 3.75  # theme.sizes.headerHeight no frontend do Streamlit 1.54
 
 
 class BrandTests(unittest.TestCase):
@@ -24,6 +26,13 @@ class BrandTests(unittest.TestCase):
         self.assertIn("width:100.00%", h)
         self.assertIn("apuração encerrada", h)
         self.assertNotIn('class="apur"', brand.header_html("x", "y", pct=None))
+
+    def test_content_clears_fixed_header(self):
+        """O cabeçalho fixo do Streamlit (3.75rem, transparente) fica por cima do conteúdo: se o padding do topo for
+        menor, ele cobre a parte de cima das teclas e o clique só pega embaixo delas."""
+        m = re.search(r'stMainBlockContainer"\]\{\{?padding-top:([\d.]+)rem', brand._css())
+        self.assertIsNotNone(m)
+        self.assertGreaterEqual(float(m.group(1)), STREAMLIT_HEADER_REM + 0.5)
 
     def test_sequential_ramp(self):
         r = brand.sequential()
