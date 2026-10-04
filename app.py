@@ -135,7 +135,8 @@ def main() -> None:
             except Exception:  # noqa: BLE001
                 log.warning("toasts", exc_info=True)
             try:
-                header(ctx)
+                if not getattr(module, "OWN_HEADER", False):  # telas com cabeçalho próprio (ex.: Visão unificada)
+                    header(ctx)
                 collector_status(conn)
             except Exception:  # noqa: BLE001
                 log.warning("cabeçalho", exc_info=True)

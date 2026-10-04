@@ -2,6 +2,7 @@
 
 VIEWS: list[tuple[str, str]] = [
     ("Mapa", "mapa"),
+    ("Visão unificada", "unificada"),
     ("Ranking", "ranking"),
     ("Evolução", "evolucao"),
     ("Votos restantes", "restantes"),
