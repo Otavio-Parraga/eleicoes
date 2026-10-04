@@ -1,5 +1,19 @@
-# dados gerados em tempo de execução (bancos, malhas, zips do TSE)
-data/
+# dados gerados em tempo de execução (bancos, zips do TSE, arquivo bruto, base do simulador, logs)
+data/*
+# exceções versionadas (o deploy não depende de downloads grandes):
+#   data/geo/   malhas do IBGE + lista de municípios do TSE (~12 MB)
+#   data/2022/  só os parquet processados de 2022 (~1,3 MB); os ZIPs do TSE ficam fora
+!data/geo/
+!data/2022/
+data/2022/*
+!data/2022/*.parquet
+*.db
+*.db-wal
+*.db-shm
+*.zip
+*.part
 __pycache__/
 *.pyc
 .DS_Store
+.streamlit/secrets.toml
+.claude/worktrees/

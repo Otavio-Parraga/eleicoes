@@ -1,0 +1,16 @@
+# Configuração do Streamlit (vale para o uso local e para o Render).
+# O que é só do servidor (porta, 0.0.0.0, sem file watcher, erros resumidos) vai como flag em render_start.sh,
+# para não mudar o fluxo de desenvolvimento local.
+
+[server]
+# Não tenta abrir navegador nem pergunta e-mail no 1º uso (no Render não há terminal interativo).
+headless = true
+# Atrás do proxy HTTPS do Render o navegador fala com a mesma origem (página e WebSocket no mesmo host),
+# então as proteções padrão funcionam sem ajuste. Mantidas explícitas para ninguém desligá-las por engano.
+enableCORS = true
+enableXsrfProtection = true
+# O app não tem upload de arquivos.
+maxUploadSize = 1
+
+[browser]
+gatherUsageStats = false

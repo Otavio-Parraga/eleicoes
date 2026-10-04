@@ -1,0 +1,9 @@
+# Dependências de terceiros importadas pelo código (eleicoes/, app.py, tools/), fixadas nas
+# versões do ambiente conda local `python3` (Python 3.13.5), onde o app foi desenvolvido e testado.
+streamlit==1.54.0
+pandas==2.3.1
+numpy==2.3.2
+plotly==6.9.0
+httpx==0.28.1
+# pyarrow: pandas.read_parquet/to_parquet (eleicoes/hist2022.py) e pyarrow.parquet direto
+pyarrow==23.0.1
