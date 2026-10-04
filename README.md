@@ -24,6 +24,7 @@ Ao escolher um estado, o coletor passa a varrer os municípios dele (a cada ~3 m
 | Tela | O que mostra |
 |---|---|
 | Mapa | Brasil por UF (cor do partido do líder, intensidade = margem) e municípios do estado escolhido |
+| Visão unificada | Todos os cargos de um estado (ou município) numa folha só: líderes no formato da tela da urna, bancadas projetadas |
 | Ranking | Candidatos da área com votos, % válidos e situação; KPIs de apuração |
 | Evolução | % de cada candidato conforme a apuração avança; viradas |
 | Votos restantes | Onde estão os votos ainda não apurados e projeção ingênua do resultado |
