@@ -1,0 +1,50 @@
+# Blueprint do Render (https://render.com/docs/blueprint-spec).
+# Um único serviço web roda o coletor do TSE (em segundo plano) e a interface Streamlit, porque os dois
+# precisam do mesmo arquivo SQLite e serviços separados do Render não compartilham disco.
+#
+# PLANO GRATUITO (padrão abaixo) — limitações importantes:
+#   * Hiberna após ~15 min sem nenhuma visita. Hibernado, o coletor também para: o histórico (gráfico de
+#     evolução, viradas, eventos) fica com buracos nesse período. Na próxima visita o serviço volta em ~1 min
+#     e o coletor recomeça (os números mais recentes do TSE aparecem logo no 1º ciclo).
+#   * Disco efêmero: o banco data/eleicoes.db é APAGADO a cada deploy, reinício ou hibernação.
+#   * Pouca CPU/RAM para coletor + Streamlit; com vários UFs em foco pode ficar lento.
+#   * 750 h gratuitas por mês por workspace (cabe um serviço ligado o mês todo, se for o único gratuito).
+#
+# PARA NÃO PERDER DADOS — plano pago + disco persistente (custo mensal; decisão sua):
+#   1. troque `plan: free` por um plano pago, ex. `plan: 0.5c-512mb` (antigo "Starter") ou `plan: 1c-2g`
+#      (antigo "Standard", mais folga de memória);
+#   2. descomente o bloco `disk:` e a variável ELEICOES_DB lá embaixo (o banco passa a viver no disco);
+#   3. faça o "Manual Sync" do Blueprint no painel do Render.
+#   O banco local cresceu ~290 MB nas primeiras horas da apuração de 2026 com foco em RS; 5 GB dá folga.
+#   Com disco anexado o serviço não escala para várias instâncias e cada deploy tem alguns segundos fora do ar.
+services:
+  - type: web
+    name: eleicoes-2026
+    runtime: python
+    plan: free
+    # Região não pode ser trocada depois de criada. Não há região na América do Sul; virginia (EUA leste)
+    # é a mais próxima do Brasil. O acesso aos servidores do TSE a partir dela NÃO foi testado.
+    region: virginia
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash render_start.sh
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      # UFs cujos municípios o coletor varre (mapa municipal). Ex.: "rs,sc". Mais UFs = mais requisições/CPU.
+      - key: ELEICOES_FOCUS
+        value: rs
+      # Mude para 2 no 2º turno (25/10/2026).
+      - key: ELEICOES_TURNO
+        value: "1"
+      # Outras opções (ver render_start.sh): ELEICOES_TIER1, ELEICOES_TIER2, ELEICOES_RAW,
+      # ELEICOES_COLLECTOR, ELEICOES_COLLECTOR_ARGS, ELEICOES_RESTART_DELAY.
+      # Só com disco persistente (plano pago):
+      # - key: ELEICOES_DB
+      #   value: /var/data/eleicoes.db
+    # Disco persistente (NÃO disponível no plano free):
+    # disk:
+    #   name: dados
+    #   mountPath: /var/data
+    #   sizeGB: 5
