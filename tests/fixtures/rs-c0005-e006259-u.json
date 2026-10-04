@@ -1,0 +1,66 @@
+
+{ "ele" : "6259", "t" : "1", "f" : "o", "sup" : "n", "tpabr" : "uf", "cdabr" : "rs", "dg" : "02/10/2026", "hg" : "18:30:12", "idg" : "966434", "dt" : "", "ht" : "", "dv" : "s", "tf" : "n", "and" : "n", "carg" : [ 
+{ "cd" : "5", "nmn" : "Senador", "nmm" : "Senador", "nmf" : "Senadora", "nv" : "2", "fed" : [ 
+{ "n" : "100", "sg" : "PSDB/CIDADANIA", "nm" : "FEDERAÇÃO PSDB CIDADANIA", "com" : "PSDB/CIDADANIA", "npar" : [ "23", "45" ] }, 
+{ "n" : "101", "sg" : "PT/PC do B/PV", "nm" : "FEDERAÇÃO BRASIL DA ESPERANÇA - FE BRASIL", "com" : "PT/PC do B/PV", "npar" : [ "13", "43", "65" ] }, 
+{ "n" : "102", "sg" : "PSOL/REDE", "nm" : "FEDERAÇÃO PSOL REDE", "com" : "PSOL/REDE", "npar" : [ "18", "50" ] } ], "agr" : [ 
+{ "n" : "210001800171", "nm" : "COLIGAÇÃO COM O POVO", "tp" : "c", "com" : "PDT / PSB / AVANTE / PCDOB / PT / PV / PSOL / REDE", "tvtn" : "0", "tvan" : "0", "par" : [ 
+{ "n" : "13", "sg" : "PT", "nm" : "PARTIDO DOS TRABALHADORES", "nfed" : "101", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "131", "sqcand" : "210002533584", "nm" : "PAULO ROBERTO SEVERO PIMENTA", "nmu" : "PIMENTA", "dt" : "19/03/1965", "seq" : "4", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002533579", "nm" : "CARLOS EDUARDO VIEIRA DA CUNHA", "nmu" : "VIEIRA DA CUNHA", "sgp" : "PDT" }, 
+{ "tp" : "s2", "sqcand" : "210002533582", "nm" : "TAMYRES FRANCIS CARVALHO FILGUEIRA", "nmu" : "TAMYRES FILGUEIRA", "sgp" : "PT" } ] } ] }, 
+{ "n" : "50", "sg" : "PSOL", "nm" : "PARTIDO SOCIALISMO E LIBERDADE", "nfed" : "102", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "500", "sqcand" : "210002533581", "nm" : "MANUELA PINTO VIEIRA D'ÁVILA", "nmu" : "MANUELA D'ÁVILA", "dt" : "18/08/1981", "seq" : "12", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002533583", "nm" : "HENRIQUE FONTANA JÚNIOR", "nmu" : "HENRIQUE FONTANA", "sgp" : "PT" }, 
+{ "tp" : "s2", "sqcand" : "210002533580", "nm" : "LUCAS CAREGNATO", "nmu" : "LUCAS CAREGNATO", "sgp" : "PT" } ] } ] } ] }, 
+{ "n" : "210001800677", "nm" : "NOSSO RIO GRANDE NÃO PARA", "tp" : "c", "com" : "MDB / PSD / PRD / SOLIDARIEDADE", "tvtn" : "0", "tvan" : "0", "par" : [ 
+{ "n" : "15", "sg" : "MDB", "nm" : "MOVIMENTO DEMOCRÁTICO BRASILEIRO", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "151", "sqcand" : "210002543863", "nm" : "GERMANO ANTONIO RIGOTTO", "nmu" : "RIGOTTO", "dt" : "24/09/1949", "seq" : "1", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002543868", "nm" : "JOSE PAULO DORNELLES CAIROLI", "nmu" : "CAIROLI", "sgp" : "MDB" }, 
+{ "tp" : "s2", "sqcand" : "210002543866", "nm" : "ANTONIO CARLOS HOHLFELDT", "nmu" : "ANTONIO HOHLFELDT", "sgp" : "MDB" } ] } ] }, 
+{ "n" : "55", "sg" : "PSD", "nm" : "PARTIDO SOCIAL DEMOCRÁTICO", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "555", "sqcand" : "210002543865", "nm" : "FREDERICO CANTORI ANTUNES", "nmu" : "FREDERICO ANTUNES", "dt" : "25/10/1968", "seq" : "7", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002543864", "nm" : "PAULA CRISTINA IORIS DE OLIVEIRA", "nmu" : "PAULA IORIS", "sgp" : "PSD" }, 
+{ "tp" : "s2", "sqcand" : "210002543867", "nm" : "ANNA BEATRIZ SANTOS PIRES DA SILVA", "nmu" : "ANNA BEATRIZ", "sgp" : "PSD" } ] } ] } ] }, 
+{ "n" : "210001800905", "nm" : "O RIO GRANDE PODE MAIS", "tp" : "c", "com" : "REPUBLICANOS / PODE / DC / NOVO / PL / PP / UNIÃO", "tvtn" : "0", "tvan" : "0", "par" : [ 
+{ "n" : "22", "sg" : "PL", "nm" : "PARTIDO LIBERAL", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "222", "sqcand" : "210002547816", "nm" : "UBIRATAN ANTUNES SANDERSON", "nmu" : "SANDERSON", "dt" : "01/12/1969", "seq" : "9", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002547820", "nm" : "IRENEU ORTH", "nmu" : "IRENEU ORTH", "sgp" : "PP" }, 
+{ "tp" : "s2", "sqcand" : "210002547815", "nm" : "ERNANI MARIO COELHO MELLO", "nmu" : "ERNANI MELLO", "sgp" : "PL" } ] } ] }, 
+{ "n" : "30", "sg" : "NOVO", "nm" : "PARTIDO NOVO", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "300", "sqcand" : "210002547819", "nm" : "MARCEL VAN HATTEM", "nmu" : "MARCEL VAN HATTEM", "dt" : "08/11/1985", "seq" : "13", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002547817", "nm" : "SERGIO BERGONSI TURRA", "nmu" : "SÉRGIO TURRA", "sgp" : "PP" }, 
+{ "tp" : "s2", "sqcand" : "210002547818", "nm" : "RICARDO MUNARSKI JOBIM", "nmu" : "RICARDO JOBIM", "sgp" : "NOVO" } ] } ] } ] }, 
+{ "n" : "210001800744", "nm" : "PARTIDO SOCIALISTA  DOS TRABALHADORES UNIFICADO", "tp" : "i", "com" : "PSTU", "vag" : "0", "par" : [ 
+{ "n" : "16", "sg" : "PSTU", "nm" : "PARTIDO SOCIALISTA  DOS TRABALHADORES UNIFICADO", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "161", "sqcand" : "210002544699", "nm" : "REGIS BATISTA ETHUR", "nmu" : "REGIS ETHUR", "dt" : "16/08/1966", "seq" : "6", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002544703", "nm" : "DENIOR JOSE MACHADO", "nmu" : "DENIOR MACHADO", "sgp" : "PSTU" }, 
+{ "tp" : "s2", "sqcand" : "210002544702", "nm" : "ADELAR CANSI", "nmu" : "ADELAR CANSI", "sgp" : "PSTU" } ] }, 
+{ "n" : "160", "sqcand" : "210002544698", "nm" : "DANIELA MAIDANA DA SILVA", "nmu" : "DANIELA MULHERES SOCIALISTAS", "dt" : "14/07/1977", "seq" : "10", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002544701", "nm" : "AITANA GODOY DA COSTA", "nmu" : "AITANA", "sgp" : "PSTU" }, 
+{ "tp" : "s2", "sqcand" : "210002544700", "nm" : "MARCELA CRISTINA ANDRADE DE AZEVEDO", "nmu" : "MARCELA AZEVEDO", "sgp" : "PSTU" } ] } ] } ] }, 
+{ "n" : "210001801332", "nm" : "PARTIDO DA CAUSA OPERÁRIA", "tp" : "i", "com" : "PCO", "vag" : "0", "par" : [ 
+{ "n" : "29", "sg" : "PCO", "nm" : "PARTIDO DA CAUSA OPERÁRIA", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "290", "sqcand" : "210002552599", "nm" : "RICARDO HERBERT JONES", "nmu" : "RIC JONES", "dt" : "18/11/1959", "seq" : "3", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002552597", "nm" : "DOMINGOS ALESSANDRETTI", "nmu" : "DOMINGOS ALESSANDRETTI", "sgp" : "PCO" }, 
+{ "tp" : "s2", "sqcand" : "210002552598", "nm" : "ABRAO RAFAEL SPRITZER", "nmu" : "ABRÃO RAFAEL SPRITZER", "sgp" : "PCO" } ] } ] } ] }, 
+{ "n" : "210001800394", "nm" : "FEDERAÇÃO PSDB CIDADANIA", "tp" : "f", "com" : "CIDADANIA / PSDB", "tvtn" : "0", "tvan" : "0", "vag" : "0", "par" : [ 
+{ "n" : "45", "sg" : "PSDB", "nm" : "PARTIDO DA SOCIAL DEMOCRACIA BRASILEIRA", "nfed" : "100", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "455", "sqcand" : "210002538467", "nm" : "MILTON BATISTA CARDOSO", "nmu" : "MILTON CARDOSO", "dt" : "15/06/1957", "seq" : "2", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002538462", "nm" : "JOSILENE DA SILVA MARTINS", "nmu" : "JOSI MARTINS", "sgp" : "PSDB" }, 
+{ "tp" : "s2", "sqcand" : "210002538466", "nm" : "DULCE MARIA MARQUES LOPES", "nmu" : "DULCE LOPES", "sgp" : "PSDB" } ] } ] }, 
+{ "n" : "23", "sg" : "CIDADANIA", "nm" : "CIDADANIA", "nfed" : "100", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "234", "sqcand" : "210002538465", "nm" : "PAULO RENATO JAGUARÃO SILVA DA ROSA", "nmu" : "RENATO JAGUARÃO", "dt" : "05/07/1969", "seq" : "8", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002538463", "nm" : "PAULO CESAR COITINHO DOS SANTOS", "nmu" : "PAULO COITINHO", "sgp" : "CIDADANIA" }, 
+{ "tp" : "s2", "sqcand" : "210002538464", "nm" : "CLEITON ELIAS NIESCIUR", "nmu" : "CLEITON NIESCIUR", "sgp" : "CIDADANIA" } ] } ] } ] }, 
+{ "n" : "210001799965", "nm" : "UNIDADE POPULAR", "tp" : "i", "com" : "UP", "vag" : "0", "par" : [ 
+{ "n" : "80", "sg" : "UP", "nm" : "UNIDADE POPULAR", "nfed" : "", "tvtn" : "0", "tvan" : "0", "cand" : [ 
+{ "n" : "808", "sqcand" : "210002533434", "nm" : "TANIA MARA SANTORO PERES", "nmu" : "TANIA PERES", "dt" : "12/09/1965", "seq" : "5", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002532273", "nm" : "CLAUDIANE MARIA CAMPELO LOPES", "nmu" : "CLAUDIANE LOPES", "sgp" : "UP" }, 
+{ "tp" : "s2", "sqcand" : "210002533437", "nm" : "DÉBORA CRISTINA DE CAMPOS BERNARDES", "nmu" : "DÉBORA BERNARDES", "sgp" : "UP" } ] }, 
+{ "n" : "800", "sqcand" : "210002533435", "nm" : "LUCIANO SCHAFER", "nmu" : "LUCIANO DO MLB", "dt" : "09/05/1980", "seq" : "11", "e" : "n", "st" : "", "vap" : "0", "pvap" : "0,00", "pvapn" : "0", "vs" : [ 
+{ "tp" : "s1", "sqcand" : "210002533438", "nm" : "ENIO ALVES BORDONI", "nmu" : "ENIO ALVES", "sgp" : "UP" }, 
+{ "tp" : "s2", "sqcand" : "210002533436", "nm" : "FERNANDA VECCHI PEGORINI", "nmu" : "NANDA DO JAV", "sgp" : "UP" } ] } ] } ] } ] } ], "s" : 
+{ "ts" : "27547", "st" : "0", "pst" : "0,00", "pstn" : "0", "snt" : "27547", "psnt" : "100,00", "psntn" : "100", "si" : "0", "psi" : "0,00", "psin" : "0", "sni" : "0", "psni" : "0,00", "psnin" : "0", "sa" : "0", "psa" : "0,00", "psan" : "0", "sna" : "0", "psna" : "0,00", "psnan" : "0" }, "e" : 
+{ "te" : "8516465", "est" : "0", "pest" : "0,00", "pestn" : "0", "esnt" : "8516465", "pesnt" : "100,00", "pesntn" : "100", "esi" : "0", "pesi" : "0,00", "pesin" : "0", "esni" : "0", "pesni" : "0,00", "pesnin" : "0", "esa" : "0", "pesa" : "0,00", "pesan" : "0", "esna" : "0", "pesna" : "0,00", "pesnan" : "0", "c" : "0", "pc" : "0,00", "pcn" : "0", "a" : "0", "pa" : "0,00", "pan" : "0" }, "v" : 
+{ "tv" : "0", "vvc" : "0", "pvvc" : "0,00", "pvvcn" : "0,00", "vv" : "0", "pvv" : "0,00", "pvvn" : "0,00", "vnom" : "0", "pvnom" : "0,00", "pvnomn" : "0,00", "van" : "0", "pvan" : "0,00", "pvann" : "0,00", "vansj" : "0", "pvansj" : "0,00", "pvansjn" : "0,00", "vb" : "0", "pvb" : "0,00", "pvbn" : "0,00", "tvn" : "0", "ptvn" : "0,00", "ptvnn" : "0,00", "vn" : "0", "pvn" : "0,00", "pvnn" : "0,00", "vnt" : "0", "pvnt" : "0,00", "pvntn" : "0,00", "vsan" : "0", "vscv" : "0" } }

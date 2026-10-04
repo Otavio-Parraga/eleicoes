@@ -1,0 +1,5 @@
+# dados gerados em tempo de execução (bancos, malhas, zips do TSE)
+data/
+__pycache__/
+*.pyc
+.DS_Store
